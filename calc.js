@@ -110,6 +110,10 @@ function performOperation() {
       console.log('division op!');
       result = x / y;
       break;
+    case undefined:
+      console.log('no op');
+      return;
+      break;
     default:
       throw new Error(`Invalid operation: ${op}`);
   }
