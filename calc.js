@@ -28,6 +28,14 @@ var ui = {
   }
 };
 
+// TODO: remove debug elements
+ui.debug = {
+  val0: document.querySelector('#val0'),
+  val1: document.querySelector('#val1'),
+  val2: document.querySelector('#val2'),
+  op: document.querySelector('#op')
+}
+
 // State
 var state;
 function resetState() {
@@ -123,6 +131,12 @@ function refreshDisplay() {
       button.classList.remove('pending');
     }
   }
+
+  // Update debug information
+  ui.debug.val0.value = state.values[0];
+  ui.debug.val1.value = state.values[1];
+  ui.debug.val2.value = state.values[2];
+  ui.debug.op.value = state.op;
 }
 
 // Event handlers

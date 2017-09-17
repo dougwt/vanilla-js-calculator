@@ -24,4 +24,14 @@ input {
   font-size: 14px;
   height: 40px;
   text-align: right;
+  display: inline-block;
+}
+
+#debug {
+  padding-left: 10px;
+  padding-top: 40px;
+}
+
+#debug>label>span {
+  width: 40px;
 }
