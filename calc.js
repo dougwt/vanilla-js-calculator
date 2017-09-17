@@ -66,8 +66,16 @@ function appendDigit(digit, vIndex) {
 }
 
 function setOperation(op) {
+  if (state.values[2]) {
+    // We already have both operands, so let's perform
+    // the operation before we do anything else...
+    performOperation();
+  }
+
   state.op = op;
+
   if (!state.values[1]) {
+    // There are no operands, so promote the previous result to the first operand.
     state.values[1] = state.values[0];
   }
   console.log(`Setting operation to ${op}`);
