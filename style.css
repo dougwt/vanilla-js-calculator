@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-size: 200%;
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border: 1px solid #999;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.pending {
+  background-color: #aaa;
+}
+
+input {
+  font-size: 14px;
+  height: 40px;
+  text-align: right;
+}
