@@ -89,12 +89,13 @@ function performOperation() {
       result = x * y;
       break;
     case '%':
+    case '÷':
       // TODO: Why isn't this case being chosen? Is it a unicode issue?
       console.log('division op!');
       result = x / y;
       break;
     default:
-      console.log('unknown op???');
+      throw new Error(`Invalid operation: ${op}`);
   }
   // Update state to prepare for the next calculation.
   state.values[0] = result;
