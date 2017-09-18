@@ -163,3 +163,27 @@ h1 {
 .debug .value {
   font-size: 16px;
 }
+
+
+/* For larger screens, constrain the size of the calculator & center on page.*/
+
+@media screen and (min-width: 520px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    width: 312px;
+    clear: both;
+  }
+  .calculator {
+    height: 440px;
+    background-image: linear-gradient(-135deg, #F3EBE9 0%, #000000 100%);
+    background-blend-mode: overlay;
+    border: 1px solid #4A4A4A;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50), inset -4px -4px 12px 0 rgba(0, 0, 0, 0.50), inset 4px 4px 12px 0 rgba(0, 0, 0, 0.50);
+    border-radius: 16px;
+  }
+}
