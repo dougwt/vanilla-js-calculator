@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vanilla JS Calculator</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="calculator">
+
+      <h1>Calcutron 2000</h1>
+      <h2>JavaScript Calculator</h2>
+
+      <div class="display" id="display">1234567890</div>
+
+      <button class="button" id="button1" value="1">1</button>
+      <button class="button" id="button2" value="2">2</button>
+      <button class="button" id="button3" value="3">3</button>
+      <button class="button buttonOp" id="addButton">+</button>
+
+      <button class="button" id="button4" value="4">4</button>
+      <button class="button" id="button5" value="5">5</button>
+      <button class="button" id="button6" value="6">6</button>
+      <button class="button buttonOp" id="subtractButton">-</button>
+
+      <button class="button" id="button7" value="7">7</button>
+      <button class="button" id="button8" value="8">8</button>
+      <button class="button" id="button9" value="9">9</button>
+      <button class="button buttonOp" id="multiplyButton">*</button>
+
+      <button class="button buttonUtil" id="clearButton">C</button>
+      <button class="button" id="button0" value="0">0</button>
+      <button class="button buttonUtil" id="equalsButton">=</button>
+      <button class="button buttonOp" id="divideButton">&#247;</button>
+
+    </div>
+    <div class="debug">
+
+      <h2>Internal State</h2>
+
+      <span class="label">val0:</span>
+      <span class="value" id="val0"></span>
+
+      <span class="label">val1:</span>
+      <span class="value" id="val1"></span>
+
+      <span class="label">op:</span>
+      <span class="value" id="op"></span>
+
+      <span class="label">val2:</span>
+      <span class="value" id="val2"></span>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

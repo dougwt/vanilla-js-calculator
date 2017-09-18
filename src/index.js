@@ -1,5 +1,7 @@
+import '../styles/index.css';
+
 // UI elements
-var ui = {
+let ui = {
   display: document.querySelector('#display'),
   output: document.querySelector('#output'),
   buttons: {
@@ -25,19 +27,17 @@ var ui = {
       '=': document.querySelector('#equalsButton'),
       'C': document.querySelector('#clearButton')
     }
+  },
+  debug: {
+    val0: document.querySelector('#val0'),
+    val1: document.querySelector('#val1'),
+    val2: document.querySelector('#val2'),
+    op: document.querySelector('#op')
   }
 };
 
-// TODO: remove debug elements
-ui.debug = {
-  val0: document.querySelector('#val0'),
-  val1: document.querySelector('#val1'),
-  val2: document.querySelector('#val2'),
-  op: document.querySelector('#op')
-}
-
 // State
-var state;
+let state;
 function resetState() {
   state = {
     values: [
@@ -58,8 +58,8 @@ resetState();
 
 function appendDigit(digit, vIndex) {
   // Calculate the new value and update state
-  var oldValue = state.values[vIndex] || 0;
-  var newValue = oldValue * 10 + digit;
+  let oldValue = state.values[vIndex] || 0;
+  let newValue = oldValue * 10 + digit;
   state.values[vIndex] = newValue;
   console.log(`appendDigit: ${oldValue} * 10 + ${digit} = ${newValue}`);
   refreshDisplay();
@@ -83,10 +83,10 @@ function setOperation(op) {
 }
 
 function performOperation() {
-  var x = state.values[1];
-  var y = state.values[2];
-  var op = state.op;
-  var result;
+  let x = state.values[1];
+  let y = state.values[2];
+  let op = state.op;
+  let result;
 
   console.log('performing op...');
 
@@ -113,7 +113,6 @@ function performOperation() {
     case undefined:
       console.log('no op');
       return;
-      break;
     default:
       throw new Error(`Invalid operation: ${op}`);
   }
@@ -127,16 +126,16 @@ function performOperation() {
 function refreshDisplay() {
   // Update display value
   if (state.op) {
-    ui.display.value = state.values[2] || 0;
+    ui.display.innerText = state.values[2] || 0;
   } else if (state.values[1]) {
-    ui.display.value = state.values[1] || 0;
+    ui.display.innerText = state.values[1] || 0;
   } else {
-    ui.display.value = state.values[0] || 0;
+    ui.display.innerText = state.values[0] || 0;
   }
 
   // Add pending class to operation if one is defined
-  for (key in ui.buttons.ops) {
-    var button = ui.buttons.ops[key];
+  for (let key in ui.buttons.ops) {
+    let button = ui.buttons.ops[key];
     if (key === state.op) {
       button.classList.add('pending');
     } else {
@@ -145,16 +144,16 @@ function refreshDisplay() {
   }
 
   // Update debug information
-  ui.debug.val0.value = state.values[0];
-  ui.debug.val1.value = state.values[1];
-  ui.debug.val2.value = state.values[2];
-  ui.debug.op.value = state.op;
+  ui.debug.val0.innerText = state.values[0] || '';
+  ui.debug.val1.innerText = state.values[1] || '';
+  ui.debug.val2.innerText = state.values[2] || '';
+  ui.debug.op.innerText = state.op || '';
 }
 
 // Event handlers
 
-function handleDigit(event) {
-  var digit = Number(this.value);
+function handleDigit() {
+  let digit = Number(this.value);
   if (state.op) {
     appendDigit(digit, 2);
   } else {
@@ -162,14 +161,14 @@ function handleDigit(event) {
   }
 }
 // Digits
-for (key in ui.buttons.digits) {
-  var button = ui.buttons.digits[key];
+for (let key in ui.buttons.digits) {
+  let button = ui.buttons.digits[key];
   button.addEventListener('click', handleDigit);
 }
 // Arithmetic Operations
-for (key in ui.buttons.ops) {
-  var button = ui.buttons.ops[key];
-  button.addEventListener('click', function(event) {
+for (let key in ui.buttons.ops) {
+  let button = ui.buttons.ops[key];
+  button.addEventListener('click', function() {
     setOperation(this.innerText);
   });
 }
