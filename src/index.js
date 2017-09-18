@@ -1,9 +1,8 @@
 import '../styles/index.css';
 
 // UI elements
-let ui = {
+const ui = {
   display: document.querySelector('#display'),
-  output: document.querySelector('#output'),
   buttons: {
     digits: {
       0: document.querySelector('#button0'),
@@ -37,16 +36,17 @@ let ui = {
 };
 
 // State
-let state;
+const state = {
+  values: [
+    undefined, // result of previous operation
+    undefined, // first operand
+    undefined, // second operand
+  ],
+  op: undefined // pending operation
+}
 function resetState() {
-  state = {
-    values: [
-      undefined, // result of previous operation
-      undefined, // first operand
-      undefined, // second operand
-    ],
-    op: undefined // pending operation
-  }
+  state.values = [undefined, undefined, undefined];
+  state.op = undefined; // pending operation
   refreshDisplay();
   console.log('State reset.')
 }
@@ -58,8 +58,8 @@ resetState();
 
 function appendDigit(digit, vIndex) {
   // Calculate the new value and update state
-  let oldValue = state.values[vIndex] || 0;
-  let newValue = oldValue * 10 + digit;
+  const oldValue = state.values[vIndex] || 0;
+  const newValue = oldValue * 10 + digit;
   state.values[vIndex] = newValue;
   console.log(`appendDigit: ${oldValue} * 10 + ${digit} = ${newValue}`);
   refreshDisplay();
@@ -123,15 +123,22 @@ function performOperation() {
   refreshDisplay();
 }
 
+function numberWithCommas(x) {
+  // Source: https://stackoverflow.com/a/2901298
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function refreshDisplay() {
   // Update display value
+  let value;
   if (state.op) {
-    ui.display.innerText = state.values[2] || 0;
+    value = state.values[2] || 0;
   } else if (state.values[1]) {
-    ui.display.innerText = state.values[1] || 0;
+    value = state.values[1] || 0;
   } else {
-    ui.display.innerText = state.values[0] || 0;
+    value = state.values[0] || 0;
   }
+  ui.display.innerText = numberWithCommas(value);
 
   // Add pending class to operation if one is defined
   for (let key in ui.buttons.ops) {
@@ -153,7 +160,7 @@ function refreshDisplay() {
 // Event handlers
 
 function handleDigit() {
-  let digit = Number(this.value);
+  const digit = Number(this.innerText);
   if (state.op) {
     appendDigit(digit, 2);
   } else {
@@ -162,12 +169,12 @@ function handleDigit() {
 }
 // Digits
 for (let key in ui.buttons.digits) {
-  let button = ui.buttons.digits[key];
+  const button = ui.buttons.digits[key];
   button.addEventListener('click', handleDigit);
 }
 // Arithmetic Operations
 for (let key in ui.buttons.ops) {
-  let button = ui.buttons.ops[key];
+  const button = ui.buttons.ops[key];
   button.addEventListener('click', function() {
     setOperation(this.innerText);
   });
@@ -180,33 +187,43 @@ ui.buttons.util['C'].addEventListener('click', resetState);
 document.addEventListener('keyup', (event) => {
   switch (event.keyCode) {
     case 48: // 0
+    case 96:
       ui.buttons.digits[0].click();
       break;
     case 49: // 1
+    case 97:
       ui.buttons.digits[1].click();
       break;
     case 50: // 2
+    case 98:
       ui.buttons.digits[2].click();
       break;
     case 51: // 3
+    case 99:
       ui.buttons.digits[3].click();
       break;
     case 52: // 4
+    case 100:
       ui.buttons.digits[4].click();
       break;
     case 53: // 5
+    case 101:
       ui.buttons.digits[5].click();
       break;
     case 54: // 6
+    case 102:
       ui.buttons.digits[6].click();
       break;
     case 55: // 7
+    case 103:
       ui.buttons.digits[7].click();
       break;
     case 56: // 8
+    case 104:
       ui.buttons.digits[8].click();
       break;
     case 57: // 9
+    case 105:
       ui.buttons.digits[9].click();
       break;
 

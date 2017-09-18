@@ -13,47 +13,71 @@
   <div class="container">
     <div class="calculator">
 
-      <h1>Calcutron 2000</h1>
-      <h2>JavaScript Calculator</h2>
+      <div class="header-container">
+        <header>
+          <h1>Calcutron 2000</h1>
+          <h2>JavaScript Calculator</h2>
+        </header>
+      </div>
 
-      <div class="display" id="display">1234567890</div>
+      <div class="display-container">
+        <div class="display" id="display">1234567890</div>
+      </div>
 
-      <button class="button" id="button1" value="1">1</button>
-      <button class="button" id="button2" value="2">2</button>
-      <button class="button" id="button3" value="3">3</button>
-      <button class="button buttonOp" id="addButton">+</button>
+      <button id="button1">1</button>
+      <button id="button2">2</button>
+      <button id="button3">3</button>
+      <button class="buttonOp" id="addButton">+</button>
 
-      <button class="button" id="button4" value="4">4</button>
-      <button class="button" id="button5" value="5">5</button>
-      <button class="button" id="button6" value="6">6</button>
-      <button class="button buttonOp" id="subtractButton">-</button>
+      <button id="button4">4</button>
+      <button id="button5">5</button>
+      <button id="button6">6</button>
+      <button class="buttonOp" id="subtractButton">-</button>
 
-      <button class="button" id="button7" value="7">7</button>
-      <button class="button" id="button8" value="8">8</button>
-      <button class="button" id="button9" value="9">9</button>
-      <button class="button buttonOp" id="multiplyButton">*</button>
+      <button id="button7">7</button>
+      <button id="button8">8</button>
+      <button id="button9">9</button>
+      <button class="buttonOp" id="multiplyButton">*</button>
 
-      <button class="button buttonUtil" id="clearButton">C</button>
-      <button class="button" id="button0" value="0">0</button>
-      <button class="button buttonUtil" id="equalsButton">=</button>
-      <button class="button buttonOp" id="divideButton">&#247;</button>
+      <button class="buttonUtil" id="clearButton">C</button>
+      <button id="button0">0</button>
+      <button class="buttonUtil" id="equalsButton">=</button>
+      <button class="buttonOp" id="divideButton">%</button>
 
     </div>
-    <div class="debug">
+    <div class="debug-container">
 
       <h2>Internal State</h2>
 
-      <span class="label">val0:</span>
-      <span class="value" id="val0"></span>
+      <div class="debug">
+        <div class="label-container">
+          <span class="label">val0</span>
+        </div>
+        <div class="value-container">
+          <span class="value" id="val0"></span>
+        </div>
 
-      <span class="label">val1:</span>
-      <span class="value" id="val1"></span>
+        <div class="label-container">
+          <span class="label">val1</span>
+        </div>
+        <div class="value-container">
+          <span class="value" id="val1"></span>
+        </div>
 
-      <span class="label">op:</span>
-      <span class="value" id="op"></span>
+        <div class="label-container">
+          <span class="label">op</span>
+        </div>
+        <div class="value-container">
+          <span class="value" id="op"></span>
+        </div>
 
-      <span class="label">val2:</span>
-      <span class="value" id="val2"></span>
+        <div class="label-container">
+          <span class="label">val2</span>
+        </div>
+        <div class="value-container">
+          <span class="value" id="val2"></span>
+        </div>
+      </div>
 
     </div>
   </div>

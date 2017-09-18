@@ -4,34 +4,162 @@
   padding: 0;
 }
 
+body {
+  background-color: #31312F;
+  font-size: 16px;
+}
+
+
+/* Calculator */
+
+button, .display-container, .debug>.value-container {
+  border-radius: 6px;
+}
+
 button {
-  font-size: 200%;
-  width: 40px;
-  height: 40px;
-  background-color: #ccc;
-  border: 1px solid #999;
+  background-color: #F29121;
+  border: 1px solid #D9821E;
+  color: #31312F;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.50);
 }
 
 button:focus {
   outline: 0;
 }
 
-.pending {
-  background-color: #aaa;
+.calculator {
+  width: auto;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: "header header header header" "display display display display" "one two three add" "four five six subtract" "seven eight nine multiply" "clear zero equal division";
+  grid-gap: 8px;
+  background-color: #F3EBE9;
+  padding: 16px;
 }
 
-input {
-  font-size: 14px;
-  height: 40px;
+.header-container {
+  grid-area: header;
+  text-align: center;
+  display: flex;
+}
+
+header {
+  margin: auto;
+}
+
+header h1 {
+  color: #F26E22;
+}
+
+header h2 {
+  color: #656565;
+}
+
+.display-container {
+  grid-area: display;
+  background-color: #D8D8D8;
+  border: 1px solid #9B9B9B;
+  box-shadow: inset 1px 1px 2px 0 rgba(0, 0, 0, 0.50);
+}
+
+.display {
   text-align: right;
-  display: inline-block;
+  padding: 8px;
+  color: #656565;
+  margin: auto;
 }
 
-#debug {
-  padding-left: 10px;
-  padding-top: 40px;
+.buttonUtil {
+  background-color: #EFDACA;
+  border: 1px solid #D6C4B6;
 }
 
-#debug>span {
-  width: 40px;
+.buttonOp {
+  background-color: #F26E22;
+  border: 1px solid #D9631E;
+}
+
+
+/* Internal State */
+
+.debug-container {
+  padding: 1em 0;
+}
+
+.debug-container h2 {
+  text-align: center;
+  color: #636363;
+}
+
+.debug {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 8px;
+  padding: 16px;
+}
+
+.debug .label-container {
+  grid-column: 1;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.debug .value-container {
+  grid-column: 2;
+  background-color: #424242;
+  height: 32px;
+  display: flex;
+}
+
+.debug .label {
+  color: #636363;
+  margin: auto 0;
+}
+
+.debug .value {
+  color: #696969;
+  margin: auto 0;
+  width: 100%;
+  padding: 0 4px;
+}
+
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Exo+2|Faster+One');
+button, h2, .display, .debug {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+button {
+  font-size: 28px;
+}
+
+header h2 {
+  font-style: italic;
+  font-size: 14px;
+}
+
+h1 {
+  font-family: 'Faster One', cursive;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.display {
+  font-size: 36px;
+}
+
+.debug .label {
+  font-size: 18px
+}
+
+.debug .value {
+  font-size: 16px;
 }
