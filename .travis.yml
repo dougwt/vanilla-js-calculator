@@ -1,24 +1,25 @@
 language: node_js
 node_js:
-- node
+  - node
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
-- npm run build
-after_success:
-- eval `ssh-agent -s`
-- chmod 600 .travis/deployment_id_rsa
-- ssh-add .travis/deployment_id_rsa
-- echo "Pushing '$TRAVIS_BRANCH' changes to https://calculator.myuserstories.com"
-before_script:
-- echo -e "Host dougwt.webfactional.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-before_install:
-- openssl aes-256-cbc -K $encrypted_eb698ed64a20_key -iv $encrypted_eb698ed64a20_iv
-  -in .travis/deployment_id_rsa.enc -out .travis/deployment_id_rsa -d
+  - npm run build
+before_deploy:
+  - npm install now --no-save # Install Now CLI on Travis
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/build/ dougwt@dougwt.webfactional.com:webapps/calculator_production
-  on:
-    branch: master
+  - provider: script # Run a custom deployment script which we will define below
+    script:
+      - now --token $NOW_TOKEN
+    skip_cleanup: true
+    on:
+      all_branches: true
+      master: false
+  - provider: script
+    script:
+      - echo "Pushing '$TRAVIS_BRANCH' changes to https://calculator.mycodebytes.com"
+      - now --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+    skip_cleanup: true
+    on:
+      branch: master
