@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "now": {
+    "type": "static"
+  },
   "scripts": {
     "clean": "rimraf build",
     "build": "NODE_ENV=production npm run clean && webpack -p",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "now-start": "NODE_ENV=production webpack -p && mkdir /public && mv build/* /public"
   },
   "author": "",
   "license": "ISC",
